@@ -38,9 +38,10 @@ router.post(
       });
       console.log(newUser);
       const savedUser = await newUser.save();
+      const { password, ...info } = savedUser._doc;
       res.status(201).json({
         message: "successfully registered",
-        data: savedUser,
+        data: info,
       });
     } catch (error) {
       res.status(500).json(error);
